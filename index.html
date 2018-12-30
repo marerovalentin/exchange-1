@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Exchange</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css">
+	<style>
+		button svg {
+			width: 30px;	
+			transform: rotate(-90deg);		
+		}
+		.wrapper {
+			max-width: 600px;
+			margin: 0 auto;
+			margin-top: 25px;
+		}
+	</style>
+</head>
+<body class="bg-light">
+	<div class="container" id="app">
+		<div class="row wrapper">
+			<div class="col-xs-12 col-md-12 mb-3 ">
+				<label for="summ">Сума</label>
+				<div class="input-group">					
+					<input v-model="count" type="number" min="0" class="form-control" id="summ" placeholder="Введiть суму">
+				</div>
+			</div>		
+			<div class="col-xs-12 col-md-12 mb-3 ">
+				<label for="from">Конвертувати з </label>			
+				<select v-model="curFrom" class="custom-select" id="from">
+			    	<option v-for="item in data" v-bind:value="item.rate" v-bind:title="item.cc">{{ item.txt }}</option>
+			    </select>
+			</div>
+			<div class="col-xs-12 col-md-12 mb-3 text-center">			  
+			    <button v-on:click="reverse" class="btn btn-outline-secondary" type="button">
+			    	<svg aria-hidden="true" data-prefix="fas" data-icon="arrows-alt-h" class="svg-inline--fa fa-arrows-alt-h fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M377.941 169.941V216H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.568 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296h243.882v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.568 0-33.941l-86.059-86.059c-15.119-15.12-40.971-4.412-40.971 16.97z"></path>
+			    </svg>
+			    </button>
+			  </div>
+			  <div class="col-xs-12 col-md-12 mb-3">	
+			  <label for="to">Конвертувати в </label>	 
+				  <select v-model="curTo" class="custom-select" id="to"	>
+				    <option v-for="item in data" v-bind:value="item.rate" v-bind:title="item.cc">{{ item.txt }}</option>
+				  </select>		  
+			</div>		
+			<div class="text-center col-md-12 col-xs-12"><h2> {{ result }} </h2></div>
+		</div>	
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+	<script src="js/vue.min.js"></script>
+	<script src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
