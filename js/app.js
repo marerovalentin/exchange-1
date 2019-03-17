@@ -1,19 +1,26 @@
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
+// url of bank
+let bank_url = 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json';
 
 $.ajax({
-	url: 'exchange.php',
+	url: bank_url,
 	method: 'POST',
 	dataType: 'json',
-	data: {
-		key: 'getExchange'
-	}
-}).done(function( resp ){	
+}).done(function( resp ){
+	let tmpArr = [];
+	resp.forEach(function (currentValue, index) {
+		if(currentValue.cc == 'XPT' || currentValue.cc == 'XPD' || currentValue.cc == 'XAG' || currentValue.cc == 'XAU'){
+			return;
+		} else {
+			tmpArr.push(currentValue);
+		}
+	});
 		new Vue({
 			el: '#app',
 			data: {
-				data: resp,
+				data: tmpArr,
 				curFrom: '',
 				curTo: '',
 				count: '',
